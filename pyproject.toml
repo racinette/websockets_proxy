@@ -1,0 +1,60 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "websockets_proxy"
+version = "0.1.0"
+requires-python = ">= 3.8"
+authors = [
+    {name = "Andrei Karavatski", email = "verolomnyy@gmail.com"}
+]
+maintainers = [
+    {name = "Andrei Karavatski", email = "verolomnyy@gmail.com"}
+]
+description = "Connect to websockets through a proxy server."
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: AsyncIO",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+    "Topic :: Internet :: Proxy Servers"
+]
+keywords = [
+    "async",
+    "websockets",
+    "websocket client",
+    "websocket proxy",
+    "websockets proxy",
+    "http",
+    "https",
+    "ws",
+    "wss",
+    "socks5",
+    "socks4",
+    "http proxy",
+]
+dependencies = [
+    "python-socks == 2.4.4",
+    "websockets"
+]
+
+[project.urls]
+Homepage = "https://github.com/racinette/websockets_proxy"
+Issues = "https://github.com/racinette/websockets_proxy/issues"
