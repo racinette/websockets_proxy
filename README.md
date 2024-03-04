@@ -1,4 +1,4 @@
-# webosckets_proxy
+# websockets_proxy
 
 This module will enable you to use [websockets](https://github.com/python-websockets/websockets) package with proxies.
 
