@@ -1,7 +1,6 @@
 from typing import Optional, Union
 from urllib.parse import urlparse
 
-import websockets
 from websockets.legacy.client import connect
 from python_socks.async_.asyncio import Proxy
 
@@ -45,7 +44,7 @@ class ProxyConnect(connect):
     def set_proxy(self, proxy: Proxy) -> None:
         self.__proxy = proxy
 
-    async def __aenter__(self) -> websockets.WebSocketClientProtocol:
+    async def __await_impl_proxy__(self):
         # creating patched socket
         sock = await self.__proxy.connect(
             dest_host=self.__host,
@@ -57,8 +56,11 @@ class ProxyConnect(connect):
         # It is because we need an already connected socket object inside the constructor,
         # but we've only just got it inside of this method
         super().__init__(self.uri, **self.__kwargs)  # noqa
-        proto = await super().__aenter__()
+        proto = await super().__await_impl_timeout__()
         return proto
+
+    def __await__(self):
+        return self.__await_impl_proxy__().__await__()
 
 
 proxy_connect = ProxyConnect

@@ -44,7 +44,7 @@ from aiohttp import web, WSMsgType, WSMessage
 
 
 HOST = '0.0.0.0'
-PORT = 54321
+PORT = 9999
 
 app = web.Application()
 
@@ -97,15 +97,23 @@ async def main():
             ip_no_proxy = msg
             print("Your IP:", ip_no_proxy)
     print('.')
-    # be sure to create your "Proxy" objects inside an async function 
-    proxy = Proxy.from_url("socks5://username:password@address:port")
+    # be sure to create your "Proxy" objects inside an async function
+    proxy = Proxy.from_url("http://login:password@address:port")
     async with proxy_connect(CHECKER_URL, proxy=proxy) as ws:
         async for msg in ws:
             ip_with_proxy = msg
-            print("Proxy IP", ip_with_proxy)
+            print("(async with) Proxy IP", ip_with_proxy)
+    print('.')
+
+    ws = await proxy_connect(CHECKER_URL, proxy=proxy)
+    async for msg in ws:
+        ip_with_proxy = msg
+        print("(await) Proxy IP", ip_with_proxy)
+    await ws.close()
     print('.')
 
 
 if __name__ == "__main__":
     asyncio.run(main())
+
 ```
