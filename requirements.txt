@@ -1,2 +1,2 @@
 websockets
-python-socks[asyncio] == 2.4.4
+python-socks[asyncio]
